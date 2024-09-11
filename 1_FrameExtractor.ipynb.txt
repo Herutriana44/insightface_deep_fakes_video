@@ -1,0 +1,100 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": []
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "code",
+      "source": [
+        "fromfrom google.colab import drive\n",
+        "drive.mount('/content/drive')"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "teFuhCWOtfhG",
+        "outputId": "cf262647-d837-481a-c2de-cb1de6cb3359"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Mounted at /content/drive\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "base_dir = \"/content/drive/My Drive/Raja Kamen Rider/\""
+      ],
+      "metadata": {
+        "id": "gFnLvqxhtoZN"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "t9T9r8q0CcYb"
+      },
+      "outputs": [],
+      "source": [
+        "import cv2\n",
+        "import os\n",
+        "\n",
+        "def ekstrak_frame(video_path, output_folder='frame'):\n",
+        "    \"\"\"\n",
+        "    Mengekstrak semua frame dari sebuah video dan menyimpannya dalam folder.\n",
+        "\n",
+        "    Args:\n",
+        "        video_path (str): Path ke file video.\n",
+        "        output_folder (str, optional): Nama folder untuk menyimpan frame. Defaults to 'frame'.\n",
+        "    \"\"\"\n",
+        "\n",
+        "    # Membuat folder output jika belum ada\n",
+        "    os.makedirs(output_folder, exist_ok=True)\n",
+        "\n",
+        "    # Membuka video\n",
+        "    cap = cv2.VideoCapture(video_path)\n",
+        "\n",
+        "    # Inisialisasi counter frame\n",
+        "    count = 0\n",
+        "\n",
+        "    while(cap.isOpened()):\n",
+        "        ret, frame = cap.read()\n",
+        "        if ret == True:\n",
+        "            # Menyimpan frame sebagai gambar\n",
+        "            cv2.imwrite(os.path.join(output_folder, f'frame_{count}.jpg'), frame)\n",
+        "            count += 1\n",
+        "        else:\n",
+        "            break\n",
+        "\n",
+        "    # Melepaskan objek video capture\n",
+        "    cap.release()\n",
+        "    cv2.destroyAllWindows()\n",
+        "\n",
+        "# Contoh penggunaan\n",
+        "video_path = base_dir+\"YouCut_20240908_215013482.mp4\"\n",
+        "ekstrak_frame(video_path, base_dir+\"frame\")"
+      ]
+    }
+  ]
+}
