@@ -1,6 +1,7 @@
 # insightface_deep_fakes_video
 
 Deskripsi file : 
+
 1_FrameExtractor.ipynb = Untuk ekstraksi semua frame yang ada pada video  
 
 2_(DeepFake)FaceSwap.ipynb = Untuk Swap Face di setiap frame video yang sudah dihasilkan 
